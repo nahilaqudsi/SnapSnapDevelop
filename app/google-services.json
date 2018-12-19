@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1094809048646",
+    "firebase_url": "https://snapping-2c0c4.firebaseio.com",
+    "project_id": "snapping-2c0c4",
+    "storage_bucket": "snapping-2c0c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094809048646:android:f8e9249ca78b6c62",
+        "android_client_info": {
+          "package_name": "com.aghnala.snapsnap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094809048646-4v7229gt6sijvvhhdrj1i73ltk51kgck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aghnala.snapsnap",
+            "certificate_hash": "4289cbacfdc38d22996056c6a5e07a759d66278f"
+          }
+        },
+        {
+          "client_id": "1094809048646-1vu4cjn7uss2892kem9r0pmrkvd5d118.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aghnala.snapsnap",
+            "certificate_hash": "428fae434746c246f00bac7755549cf86271d56b"
+          }
+        },
+        {
+          "client_id": "1094809048646-v31il3iipvu52url4g63i1lm48073epb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnG9Jldh-DRdHKpZz49EUZnli4eAksFEM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094809048646-v31il3iipvu52url4g63i1lm48073epb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
