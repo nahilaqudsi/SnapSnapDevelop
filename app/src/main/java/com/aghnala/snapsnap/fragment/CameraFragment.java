@@ -1,4 +1,4 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.fragment;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.aghnala.snapsnap.FindUsersActivity;
+import com.aghnala.snapsnap.R;
+import com.aghnala.snapsnap.ShowCaptureActivity;
+import com.aghnala.snapsnap.SplashScreenActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;

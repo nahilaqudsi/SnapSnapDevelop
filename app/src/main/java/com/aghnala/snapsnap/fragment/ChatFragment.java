@@ -1,10 +1,12 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.aghnala.snapsnap.R;
 
 /**
  * Created by simco on 1/3/2018.
