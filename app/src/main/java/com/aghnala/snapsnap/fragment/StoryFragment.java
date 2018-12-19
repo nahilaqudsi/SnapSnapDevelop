@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.aghnala.snapsnap.R;
-import com.aghnala.snapsnap.StoryAdapter;
-import com.aghnala.snapsnap.StoryObject;
+import com.aghnala.snapsnap.viewStory.StoryAdapter;
+import com.aghnala.snapsnap.viewStory.StoryObject;
 import com.aghnala.snapsnap.UserInformation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

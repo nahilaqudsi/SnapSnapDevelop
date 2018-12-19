@@ -1,4 +1,4 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.viewFollow;
 
 public class FollowObject {
     private String email;

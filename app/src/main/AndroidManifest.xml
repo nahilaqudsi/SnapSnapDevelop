@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".loginRegis.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ChooseLoginRegistrationActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".loginRegis.ChooseLoginRegistrationActivity" />
+        <activity android:name=".loginRegis.LoginActivity" />
+        <activity android:name=".loginRegis.RegistrationActivity" />
         <activity android:name=".ShowCaptureActivity" />
         <activity android:name=".FindUsersActivity"></activity>
     </application>

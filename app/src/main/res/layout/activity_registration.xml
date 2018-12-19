@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.aghnala.snapsnap.RegistrationActivity"
+    tools:context="com.aghnala.snapsnap.loginRegis.RegistrationActivity"
     android:orientation="vertical"
     android:background="@color/colorPrimary">
 

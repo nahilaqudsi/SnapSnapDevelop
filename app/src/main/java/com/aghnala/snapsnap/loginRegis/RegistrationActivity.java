@@ -1,4 +1,4 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.loginRegis;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,25 +9,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.aghnala.snapsnap.MainActivity;
+import com.aghnala.snapsnap.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
 
-    private Button mLogin;
-    private EditText mEmail, mPassword;
+public class RegistrationActivity extends AppCompatActivity {
+
+    private Button mRegistration;
+    private EditText mEmail, mPassword, mName;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.activity_registration);
 
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -45,20 +50,34 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mLogin = findViewById(R.id.login);
+        mRegistration = findViewById(R.id.registration);
+        mName = findViewById(R.id.name);
         mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password);
 
-        mLogin.setOnClickListener(new View.OnClickListener() {
+
+        mRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String name = mName.getText().toString();
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Sign in ERROR", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplication(), "Sign in ERROR", Toast.LENGTH_SHORT).show();
+                        }else{
+                            String userId = mAuth.getCurrentUser().getUid();
+
+                            final DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+
+                            Map userInfo = new HashMap<>();
+                            userInfo.put("email", email);
+                            userInfo.put("name", name);
+                            userInfo.put("profileImageUrl", "default");
+
+                            currentUserDb.updateChildren(userInfo);
                         }
                     }
                 });

@@ -1,4 +1,4 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.viewStory;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.aghnala.snapsnap.R;
 
 import java.util.List;
 

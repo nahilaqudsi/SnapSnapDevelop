@@ -1,4 +1,4 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.loginRegis;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,28 +9,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.aghnala.snapsnap.MainActivity;
+import com.aghnala.snapsnap.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
+public class LoginActivity extends AppCompatActivity {
 
-public class RegistrationActivity extends AppCompatActivity {
-
-    private Button mRegistration;
-    private EditText mEmail, mPassword, mName;
+    private Button mLogin;
+    private EditText mEmail, mPassword;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_login);
+
 
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -48,34 +47,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mRegistration = findViewById(R.id.registration);
-        mName = findViewById(R.id.name);
+        mLogin = findViewById(R.id.login);
         mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password);
 
-
-        mRegistration.setOnClickListener(new View.OnClickListener() {
+        mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String name = mName.getText().toString();
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()){
-                            Toast.makeText(getApplication(), "Sign in ERROR", Toast.LENGTH_SHORT).show();
-                        }else{
-                            String userId = mAuth.getCurrentUser().getUid();
-
-                            final DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
-
-                            Map userInfo = new HashMap<>();
-                            userInfo.put("email", email);
-                            userInfo.put("name", name);
-                            userInfo.put("profileImageUrl", "default");
-
-                            currentUserDb.updateChildren(userInfo);
+                            Toast.makeText(LoginActivity.this, "Sign in ERROR", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

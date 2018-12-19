@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.aghnala.snapsnap.FindUsersActivity;
 import com.aghnala.snapsnap.R;
 import com.aghnala.snapsnap.ShowCaptureActivity;
-import com.aghnala.snapsnap.SplashScreenActivity;
+import com.aghnala.snapsnap.loginRegis.SplashScreenActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;

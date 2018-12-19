@@ -1,4 +1,4 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.viewStory;
 
 public class StoryObject {
     private String email;

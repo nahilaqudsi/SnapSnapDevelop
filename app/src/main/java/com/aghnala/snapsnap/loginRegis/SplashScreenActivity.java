@@ -1,9 +1,10 @@
-package com.aghnala.snapsnap;
+package com.aghnala.snapsnap.loginRegis;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.aghnala.snapsnap.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
