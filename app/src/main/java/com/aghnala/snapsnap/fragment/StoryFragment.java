@@ -89,13 +89,13 @@ public class StoryFragment extends Fragment {
                         }
                         long timestampCurrent = System.currentTimeMillis();
                         if(timestampCurrent >= timestampBeg && timestampCurrent <= timestampEnd){
-                            StoryObject obj = new StoryObject(email, uid, "story");
+                            //StoryObject obj = new StoryObject(email, uid, "story");
+                            StoryObject obj = new StoryObject(email, uid);
                             if(!results.contains(obj)){
                                 results.add(obj);
                                 mAdapter.notifyDataSetChanged();
                             }
                         }
-
                     }
                 }
 

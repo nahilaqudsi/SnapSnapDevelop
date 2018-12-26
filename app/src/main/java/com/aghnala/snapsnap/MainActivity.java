@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        UserInformation userInformation = new UserInformation();
+        userInformation.startFetching();
+
         ViewPager viewPager = findViewById(R.id.viewPager);
 
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());

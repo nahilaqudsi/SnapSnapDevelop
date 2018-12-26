@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aghnala.snapsnap.R;
+import com.aghnala.snapsnap.UserInformation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,6 +32,13 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowViewHolders>{
     @Override
     public void onBindViewHolder(final FollowViewHolders holder, int position) {
         holder.mEmail.setText(usersList.get(position).getEmail());
+
+        if(UserInformation.listFollowing.contains(usersList.get(holder.getLayoutPosition()).getUid())){
+            holder.mFollow.setText("following");
+        }else{
+            holder.mFollow.setText("follow");
+        }
+
         holder.mFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
