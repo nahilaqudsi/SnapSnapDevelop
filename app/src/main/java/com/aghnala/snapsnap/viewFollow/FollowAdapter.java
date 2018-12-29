@@ -41,13 +41,13 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowViewHolders>{
 
         holder.mFollow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                if(holder.mFollow.getText().equals("Follow")){
+                if(!UserInformation.listFollowing.contains(usersList.get(holder.getLayoutPosition()).getUid())){
                     holder.mFollow.setText("following");
                     FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("following").child(usersList.get(holder.getLayoutPosition()).getUid()).setValue(true);
-
-                } else {
+                }else{
+                    holder.mFollow.setText("follow");
                     FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("following").child(usersList.get(holder.getLayoutPosition()).getUid()).removeValue();
                 }
             }

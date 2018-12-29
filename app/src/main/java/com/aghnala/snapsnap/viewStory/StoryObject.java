@@ -3,12 +3,12 @@ package com.aghnala.snapsnap.viewStory;
 public class StoryObject {
     private String email;
     private String uid;
-//    private String charOrStory;
+    private String charOrStory;
 
-    public StoryObject(String email, String uid){
+    public StoryObject(String email, String uid, String charOrStory){
         this.email = email;
         this.uid = uid;
-//        this.charOrStory = charOrStory;
+        this.charOrStory = charOrStory;
     }
 
     public String getUid(){
@@ -25,12 +25,12 @@ public class StoryObject {
         this.email = email;
     }
 
-//    public String getCharOrStory(){
-//        return charOrStory;
-//    }
-//    public void setCharOrStory(String charOrStory){
-//        this.charOrStory = charOrStory;
-//    }
+    public String getCharOrStory(){
+        return charOrStory;
+    }
+    public void setCharOrStory(String charOrStory){
+        this.charOrStory = charOrStory;
+    }
 
     @Override
     public boolean equals(Object obj) {

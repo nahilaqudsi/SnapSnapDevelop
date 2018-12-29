@@ -1,7 +1,11 @@
 package com.aghnala.snapsnap.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +25,8 @@ import com.aghnala.snapsnap.ShowCaptureActivity;
 import com.aghnala.snapsnap.loginRegis.SplashScreenActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -50,14 +56,14 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
 
         mSurfaceView = view.findViewById(R.id.surfaceView);
         mSurfaceHolder = mSurfaceView.getHolder();
-//
+
         if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(), new String[] {android.Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
         }else{
             mSurfaceHolder.addCallback(this);
             mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }
-//
+
         Button mLogout = view.findViewById(R.id.logout);
         Button mFindUsers = view.findViewById(R.id.findUsers);
         Button mCapture = view.findViewById(R.id.capture);
@@ -86,54 +92,50 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
             @Override
             public void onPictureTaken(byte[] bytes, Camera camera) {
 
-                Intent intent = new Intent(getActivity(), ShowCaptureActivity.class);
-                intent.putExtra("capture", bytes);
-                startActivity(intent);
-                return;
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
-//                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//
-//                Bitmap rotateBitmap = rotate(decodedBitmap);
-//
-//                String fileLocation = SaveImageToStorage(rotateBitmap);
-//                if(fileLocation!= null){
-//                    Intent intent = new Intent(getActivity(), ShowCaptureActivity.class);
-//                    startActivity(intent);
-//                    return;
-//                }
+                Bitmap rotateBitmap = rotate(decodedBitmap);
+
+                String fileLocation = SaveImageToStorage(rotateBitmap);
+                if(fileLocation!= null){
+                    Intent intent = new Intent(getActivity(), ShowCaptureActivity.class);
+                    startActivity(intent);
+                    return;
+                }
             }
         };
+
 
         return view;
     }
 
 
-//    public String SaveImageToStorage(Bitmap bitmap){
-//        String fileName = "imageToSend";
-//        try{
-//            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//            FileOutputStream fo = getContext().openFileOutput(fileName, Context.MODE_PRIVATE);
-//            fo.write(bytes.toByteArray());
-//            fo.close();
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            fileName = null;
-//        }
-//        return fileName;
-//    }
-//
-//    private Bitmap rotate(Bitmap decodedBitmap) {
-//        int w = decodedBitmap.getWidth();
-//        int h = decodedBitmap.getHeight();
-//
-//        Matrix matrix = new Matrix();
-//        matrix.setRotate(90);
-//
-//        return Bitmap.createBitmap(decodedBitmap, 0, 0, w, h, matrix, true);
-//
-//    }
-//
+    public String SaveImageToStorage(Bitmap bitmap){
+        String fileName = "imageToSend";
+        try{
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            FileOutputStream fo = getContext().openFileOutput(fileName, Context.MODE_PRIVATE);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            fileName = null;
+        }
+        return fileName;
+    }
+
+    private Bitmap rotate(Bitmap decodedBitmap) {
+        int w = decodedBitmap.getWidth();
+        int h = decodedBitmap.getHeight();
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(90);
+
+        return Bitmap.createBitmap(decodedBitmap, 0, 0, w, h, matrix, true);
+
+    }
+
     private void captureImage() {
         camera.takePicture(null, null, jpegCallback);
     }
@@ -162,7 +164,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
 
 
         camera.setParameters(parameters);
-//
+
         try {
             camera.setPreviewDisplay(surfaceHolder);
         } catch (IOException e) {
